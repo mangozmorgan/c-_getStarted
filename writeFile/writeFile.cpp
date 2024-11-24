@@ -7,22 +7,57 @@
 #include <chrono>       
 using namespace std;
 
-int write(){
-   ofstream monFlux("./scores.txt", ios::app);
-   
-   if ( monFlux ){
+int init(){
 
-	monFlux << "Voilaaaaaaaaa" << endl;
-	monFlux << "Tadaaaaaaaa" << endl;
-	monFlux.close();
+	string choice;
+	cout << "What do u want to do ? (w = write, r = read) :" << endl ;
+	cin >> choice;
 
-   }else{
-	cout << "Impossible d'ouvrir le fichier" << endl;
-   }
-   return 0;
+	if( choice == "w" ){
+		write();
+	}else if( choice == "r" ){
+
+		string mode;
+		bool byWord(false);
+		cout << "Wich mode ? (w = by characters, n = normal)" << endl;
+
+		cin >> mode;
+
+		if( mode == "w" ){
+			byWord = true;
+		}else{
+			cout << "Erreur a gerer " << endl;
+		}
+
+		read(byWord);
+	}
+
+	return 0;
+
 }
 
+int write() {
+    string content;
+
+    cout << "What do you want to write? :" << endl;
+    cin.ignore(); 
+
+    getline(cin, content);
+    ofstream monFlux("./scores.txt", ios::app);
+
+    if (monFlux) {
+        monFlux << content << endl;
+        monFlux.close(); 
+    } else {
+        cout << "Impossible d'ouvrir le fichier" << endl;
+    }
+
+    return 0;
+}
+
+
 int read( bool byWord ){
+	
    ifstream file("./scores.txt");
    
    if ( file ){
