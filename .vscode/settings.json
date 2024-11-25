@@ -50,7 +50,8 @@
 		"xmemory0": "cpp",
 		"xstddef": "cpp",
 		"xtr1common": "cpp",
-		"ctime": "cpp"
+		"ctime": "cpp",
+		"filesystem": "cpp"
 	},
 	
 }

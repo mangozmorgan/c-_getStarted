@@ -1,55 +1,120 @@
 #include "writeFile.hpp"
-
+#include <filesystem>
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <thread>      
-#include <chrono>       
+#include <chrono>   
+
 using namespace std;
+namespace fs = std::filesystem;
 
 int init(){
 
-	string choice;
-	cout << "What do u want to do ? (w = write, r = read) :" << endl ;
-	cin >> choice;
+	bool isFinished(false);
 
-	if( choice == "w" ){
-		write();
-	}else if( choice == "r" ){
+	while( !isFinished ){
 
-		string mode;
-		bool byWord(false);
-		cout << "Wich mode ? (w = by characters, n = normal)" << endl;
+		string choice;
+		cout << "What do u want to do ? (w = write, r = read) :" << endl ;
+		cin >> choice;
+		cin.ignore();
 
-		cin >> mode;
+		if( choice == "w" ){
 
-		if( mode == "w" ){
-			byWord = true;
-		}else{
-			cout << "Erreur a gerer " << endl;
+			write();
+
+		}else if( choice == "r" ){
+
+			string mode;
+			bool byWord(false);
+
+			cout << "Wich mode ? (w = by characters, n = normal)" << endl;
+
+			cin >> mode;
+			cin.ignore();
+
+			if( mode == "w" ){
+				byWord = true;
+			}else{
+				cout << "Erreur a gerer " << endl;
+			}
+
+			read(byWord);
 		}
 
-		read(byWord);
+
+		cout << "Another task ? (y = yes, n = exit) :" << endl ;
+		cin >> choice;
+
+		if( choice == "n" ){
+			isFinished = true;
+			cout << "See yah !" << endl ;
+		}
+
 	}
+	
 
 	return 0;
 
 }
 
+int listFiles(){
+
+	for (const auto& entry : fs::directory_iterator("./logs")) {
+
+        if (fs::is_regular_file(entry.status())) {
+            std::cout << "- " << entry.path().filename() << std::endl;
+        }
+    }
+
+	return 0;
+}
+
 int write() {
+
+	string baseFilename("./logs/");
+	int typeOpen(1);
+	string filename;
+	bool isFinish(false);
+
+	cout << "Do you wanna create a new file or update one ? " << endl;
+	cout << "1 = new file, 2 = update file" << endl;
+
+	cin >> typeOpen;
+	cin.ignore(); 
+
+	if( typeOpen == 1 ){
+
+
+		cout << "Wich Filename ? " << endl;
+		getline(cin, filename);
+
+	}else if ( typeOpen == 2 ){
+
+		cout << "Wich File ? " << endl;
+
+
+		listFiles();
+
+		getline(cin, filename);
+	}
+	
+
     string content;
 
     cout << "What do you want to write? :" << endl;
-    cin.ignore(); 
+
 
     getline(cin, content);
-    ofstream monFlux("./scores.txt", ios::app);
+    ofstream monFlux(baseFilename + filename, ios::app);
 
     if (monFlux) {
         monFlux << content << endl;
         monFlux.close(); 
+		cout << "Operation success" << endl;
     } else {
-        cout << "Impossible d'ouvrir le fichier" << endl;
+        cout << "Cannot open the file: " << baseFilename + filename << endl;
     }
 
     return 0;
@@ -57,8 +122,13 @@ int write() {
 
 
 int read( bool byWord ){
+
+	string filename;
+	cout << "Wich File ? " << endl;
+	listFiles();
+	getline(cin, filename);
 	
-   ifstream file("./scores.txt");
+   ifstream file("./logs/"+filename);
    
    if ( file ){
 		file.seekg(10);
