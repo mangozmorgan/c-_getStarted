@@ -6,15 +6,16 @@
 class Enemy{
 
 	public:
+		Enemy(std::string type, int life, int force, bool isAlive){};
 		int createEnemy();
+		Enemy createOrc();
 		int attackEnemy(Enemy &enemy);
 
 
 	private: 
-		std::string name;
-		int force;
+		std::string type;
 		int life;
-		std::string specialAttack;
+		int force;
 		bool isAlive;
 };
 

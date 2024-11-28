@@ -1,6 +1,4 @@
 #include <iostream>
-// #include "findWord/findWord.hpp"
-// #include "writeFile/writeFile.hpp"
 #include "myGame/myGame.hpp"
 
 using namespace std;

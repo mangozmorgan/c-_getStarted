@@ -1,37 +1,30 @@
-#include "MyGame.hpp"
+#include "myGame.hpp"
+#include "../player/player.hpp"
 #include <iostream>
 #include <string>
 using namespace std;
 
-// Définition du constructeur
-MyGame::MyGame() {
-    this->life = 100;  
-    this->playerName = "";  
-    this->mana = 50; 
+
+MyGame::MyGame(){
+    // Initialise des valeurs par défaut si nécessaire
 }
 
-
 int MyGame::initGame() {
-
+	
 	string playerName;
 	
-	cout << "What is your name ?" << endl;
+	cout << "Hello ! What is your name ?" << endl;
 	getline(cin, playerName);
+
+	this->player = Player(playerName);
 
 	cout << " Welcome in my awesome Game " << playerName << " !!" << endl;
 
     return 0;
 }
 
-int MyGame::addPlayer(string playerName){
-	this->playerName = playerName;
-
-	return 0;
-}
 
 
-// int MyGame::chooseClass(){
-	
 
-// 	return 0;
-// }
+
+

@@ -2,19 +2,17 @@
 #define MY_GAME_HPP
 #include <string>
 #include <iostream>
+#include "../player/player.hpp"
 
 
 class MyGame {
 
 	public:
-		MyGame(); // Déclaration du constructeur	
+		MyGame();
 		int initGame();
-		int addPlayer(std::string playerName);
 
 	private:
-		int life;
-		int mana;
-		std::string playerName;
+		Player player;
 	};
 
 #endif

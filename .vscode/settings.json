@@ -76,7 +76,12 @@
 		"sstream": "cpp",
 		"stop_token": "cpp",
 		"text_encoding": "cpp",
-		"variant": "cpp"
+		"variant": "cpp",
+		"locale": "cpp",
+		"xlocbuf": "cpp",
+		"xlocmes": "cpp",
+		"xlocmon": "cpp",
+		"xloctime": "cpp"
 	},
 	
 }
