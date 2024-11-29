@@ -1,18 +1,21 @@
 #ifndef MY_GAME_HPP
 #define MY_GAME_HPP
 #include <string>
+#include <vector>
 #include <iostream>
-#include "../player/player.hpp"
-
+#include "../Player/Player.hpp"
+#include "../Enemy/Enemy.hpp"
+using std::vector;
 
 class MyGame {
-
+	
 	public:
-		MyGame();
-		int initGame();
+		MyGame(const std::string& playerName);
+		int partOne();
 
 	private:
 		Player player;
-	};
+		std::vector<Enemy> enemiesList;
+};
 
 #endif

@@ -1,15 +1,26 @@
-#include "enemy/enemy.hpp"
+#include "./Enemy.hpp"
+#include "../Player/Player.hpp"
+#include <iostream>
+#include <string>
+using namespace std;
 
+Enemy::Enemy(const std::string& type, int life, int force){
 
-int Enemy::createEnemy(){
+	cout << "One " << type << " appeared" << endl;
+
+	this->type = type;
+	this->life = life;
+	this->force = force;
+	this->isAlive = true;
+
+} 
+
+int Enemy::attackEnemy(Enemy &enemy, Player &player) {
 	return 0 ;
 }
 
-int Enemy::attackEnemy(Enemy &enemy){
-	return 0 ;
+
+int Enemy::getEnemyLife(Enemy &enemy){
+	return this->life;
 }
 
-
-Enemy Enemy::createOrc(){
-	return Enemy("Orc", 50, 10, true);
-}

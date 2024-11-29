@@ -8,8 +8,10 @@
 class Player {
 
 	public:
-		Player();
 		Player(std::string playerName);
+		std::string getPlayerName();
+		int attackEnemy(Player& player, Enemy& enemy);
+
 
 	private: 
 		std::string playerName;
