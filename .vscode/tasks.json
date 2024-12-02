@@ -7,7 +7,7 @@
 		"command": "cmd",
 		"args": [
 		  "/c",
-		  "g++ -g main.cpp ./Player/Player.cpp  ./Enemy/Enemy.cpp ./MyGame/MyGame.cpp -o main.exe && main.exe"
+		  "g++ -static -g main.cpp ./Player/Player.cpp  ./Enemy/Enemy.cpp ./MyGame/MyGame.cpp -o main.exe && main.exe"
 		],
 		"group": {
 		  "kind": "build",
